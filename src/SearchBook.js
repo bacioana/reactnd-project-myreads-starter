@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 
+
+
 class SearchBook extends Component {
 	state = {
 	    query:'',
@@ -18,13 +20,29 @@ class SearchBook extends Component {
 	}
 
 	searchBook = (query) => {
-	    BooksAPI.search(query).then((data)=>{
-	      this.setState({books:data})
-	    })
+	    BooksAPI.search(query).then((data)=>{	    	
+    		let newArr=[]
+	    	data.map((book)=>{
+	    		let al='false'
+	    		this.props.listedBooks.map((listedBook)=>{
+	    			if(book.id===listedBook.id){
+	    				book.shelf=listedBook.shelf
+	    				newArr.push(book)	
+	    				al='true'    					    				
+	    			}	    			
+	    		})
+	    		if(al==='false'){
+    				book.shelf='none'
+    				newArr.push(book)
+    			}
+	    	})
+	    	this.setState({books:newArr})	    		    		    	   		    	
+	    })	    
   	}
 
-	render () {
-		return (
+
+	render () {		
+		return (				
 			<div className="search-books">
 				<div className="search-books-bar">
 					<Link

@@ -13,8 +13,7 @@ class BooksApp extends React.Component {
   
 
   state = {
-    books :[]
-    
+    books :[]    
   }
 
   componentDidMount(){    
@@ -61,16 +60,13 @@ class BooksApp extends React.Component {
             </div>
             
           )}/>
-
-          <Route path="/search" render={() => (            
-              <div>
+          <Route path="/search" render={() => (               
                 <SearchBook 
+                  listedBooks={this.state.books}
                   onUpdate={(book,shelf)=>{
                     this.updateShelf(book,shelf)                                                 
                   }}                               
-                  />
-              </div>
-                                  
+                  />                                               
           )}/>  
         </Switch>      
       </BrowserRouter>
