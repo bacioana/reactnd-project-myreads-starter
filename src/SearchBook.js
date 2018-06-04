@@ -2,8 +2,6 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 
-
-
 class SearchBook extends Component {
 	state = {
 	    query:'',
@@ -66,7 +64,9 @@ class SearchBook extends Component {
 									<li key={book.id}>
 										<div className="book">
 											<div className="book-top">
-												<div className="book-cover" style={{width: 128, height: 193, backgroundImage:`url(${book.imageLinks.thumbnail})`}}></div>
+												{book.hasOwnProperty('imageLinks') && (
+													<div className="book-cover" style={{width: 128, height: 193, backgroundImage:`url(${book.imageLinks.thumbnail})`}}></div>
+												)}												
 												<div className="book-shelf-changer">
 												  <select value={book.shelf} onChange={(e) =>{														  	
 													  	let shelf=e.target.value
@@ -81,7 +81,10 @@ class SearchBook extends Component {
 												</div>
 											</div>
 											<div className="book-title">{book.title}</div>
-											<div className="book-authors">{book.authors}</div>
+											{book.hasOwnProperty('authors') && (
+												<div className="book-authors">{book.authors}</div>
+											)}
+											
 										</div>
 									</li>
 								))}
