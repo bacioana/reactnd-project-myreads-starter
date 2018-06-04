@@ -11,10 +11,12 @@ class SearchBook extends Component {
   	updateQuery= (query) => {
 		this.setState({
 			query:query.trim()
-		})
-		if(query.length > 0) {
+		})	
+		if(query.length>0){
 			this.searchBook(query)
-		}			
+		} else {
+			this.setState({books:[]})
+		}
 	}
 
 	searchBook = (query) => {
@@ -37,7 +39,6 @@ class SearchBook extends Component {
 	    	this.setState({books:newArr})	    		    		    	   		    	
 	    })	    
   	}
-
 
 	render () {		
 		return (				

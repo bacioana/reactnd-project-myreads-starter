@@ -64,7 +64,7 @@ class BooksApp extends React.Component {
                 <SearchBook 
                   listedBooks={this.state.books}
                   onUpdate={(book,shelf)=>{
-                    this.updateShelf(book,shelf)                                                 
+                    this.updateShelf(book,shelf)                  
                   }}                               
                   />                                               
           )}/>  
