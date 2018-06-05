@@ -23,7 +23,7 @@ class BooksApp extends React.Component {
   }
 
   updateShelf = (book, shelf) => { 
-    BooksAPI.update(book.book,shelf).then((books)=>{
+    BooksAPI.update(book.book,shelf).then((book)=>{
       window.location.reload()
     })
   }
@@ -47,14 +47,14 @@ class BooksApp extends React.Component {
                 books={this.state.books.filter((book) => book.shelf === 'wantToRead')} 
                 shelf='Want to Read'
                 onUpdate={(book,shelf)=>{
-                  this.updateShelf(book,shelf)                  
+                  this.updateShelf(book,shelf)                 
                   }}
                 />
               <BookList 
                 books={this.state.books.filter((book) => book.shelf === 'read')} 
                 shelf='Read'
                 onUpdate={(book,shelf)=>{
-                  this.updateShelf(book,shelf)                  
+                  this.updateShelf(book,shelf)               
                 }}
                 /> 
             </div>
